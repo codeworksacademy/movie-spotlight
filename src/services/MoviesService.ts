@@ -10,7 +10,15 @@ type MoviesResponse = {
   total_results: number
 }
 
+let searching = false
+
 class MoviesService {
+  async getMovie(movieId: string | undefined) {
+    AppState.movie = null
+    const response = await movieApi.get('movie/' + movieId)
+    AppState.movie = new Movie(response.data)
+    // console.log('GET MOVIE', response.data)
+  }
 
   async discoverMovies() {
     const response = await movieApi.get('discover/movie')
@@ -24,6 +32,8 @@ class MoviesService {
   }
 
   async searchMovies(searchQuery: string) {
+    if (searching) return
+    searching = true
     const response = await movieApi.get(`search/movie?query=${searchQuery}`)
     logger.log('SEARCHED MOVIES 🔍', response.data)
     this.handleResponseData(response.data)
@@ -36,12 +46,13 @@ class MoviesService {
   }
 
   handleResponseData(responseData: MoviesResponse) {
+    searching = false
     const movies = responseData.results.map((movieData: MovieData) => new Movie(movieData))
     console.log(movies)
     AppState.movies = movies
-    // AppState.currentPage = responseData.page
-    // AppState.totalPages = responseData.total_pages
-    // AppState.totalResults = responseData.total_results
+    AppState.currentPage = responseData.page
+    AppState.totalPages = responseData.total_pages
+    AppState.totalResults = responseData.total_results
   }
 
   clearMovies() {

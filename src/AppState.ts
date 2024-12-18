@@ -11,6 +11,10 @@ class ObservableAppState {
   account: Account | null = null
   // prop: dataType = (assignment, value)
   movies: Movie[] = []
+  movie: Movie | null = null
+  totalResults: number = 0
+  totalPages: number = 0
+  currentPage: number = 0
 
 
   constructor() {

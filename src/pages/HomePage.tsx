@@ -4,7 +4,10 @@ import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
 import { observer } from 'mobx-react';
 import MovieCard from '../components/MovieCard';
-function HomePage() {
+import MovieSearch from '../components/MovieSearch';
+
+
+export default function HomePage() {
 
   async function getMovies() {
     try {
@@ -22,16 +25,17 @@ function HomePage() {
   // this is an onmounted
   useEffect(onMounted, [])
 
+  const MovieList = observer(() => AppState.movies.map(m => <MovieCard movie={m} key={m.id} />)
+  )
+
 
   return (
     <div className="home-page">
 
-      {AppState.movies.map(m => <MovieCard movie={m} key={m.id} />)}
-
+      <MovieSearch />
+      <MovieList />
 
     </div>
   )
 }
-
-export default observer(HomePage)
 
