@@ -2,12 +2,16 @@ import { action, makeAutoObservable } from "mobx"
 import { isValidProp } from "./utils/isValidProp.ts"
 import { Account } from './models/Account.js'
 import { Identity } from '@bcwdev/auth0provider-client'
+import { Movie } from './models/Movie.ts'
 
 
 class ObservableAppState {
 
   identity: Identity | null = null
   account: Account | null = null
+  // prop: dataType = (assignment, value)
+  movies: Movie[] = []
+
 
   constructor() {
     makeAutoObservable(this)
