@@ -25,15 +25,30 @@ export default function HomePage() {
   // this is an onmounted
   useEffect(onMounted, [])
 
-  const MovieList = observer(() => AppState.movies.map(m => <MovieCard movie={m} key={m.id} />)
+  const MovieList = observer(() => AppState.movies.map(m =>
+    <div className='col-md-4 my-3' key={m.id}>
+
+      <MovieCard movie={m}  />
+    </div>
+  )
   )
 
 
   return (
-    <div className="home-page">
+    <div className="home-page container">
 
-      <MovieSearch />
-      <MovieList />
+      <div className="row">
+        <div className="col-8 m-auto">
+          <MovieSearch />
+        </div>
+      </div>
+
+      <div className="row">
+        <MovieList />
+      </div>
+
+
+
 
     </div>
   )

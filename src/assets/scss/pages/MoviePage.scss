@@ -1,0 +1,20 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #000000a7;
+}
+
+.movie-backdrop {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 1rem;
+  filter: saturate(0.5);
+  img {
+    height: 60vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 18px black) saturate(1.5);
+  }
+}

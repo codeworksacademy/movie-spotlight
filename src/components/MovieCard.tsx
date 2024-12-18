@@ -9,10 +9,11 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   return (
     <div className="MovieCard">
-      <Link to={`/movies/${movie.id}`}>
-        {movie.title}
-      </Link>
-
+      <div>
+        <Link to={"movies/" + movie.id}>
+          <img className='img-fluid rounded shadow' src={movie.posterImgUrl} alt={movie.title} title={movie.title} />
+        </Link>
+      </div>
     </div>
   )
 
