@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import HomePage from './pages/HomePage.tsx';
 import AboutPage from './pages/AboutPage.tsx';
 import AccountPage from './pages/AccountPage.tsx';
+import MoviePage from './pages/MoviePage.tsx';
 
 
 export const router = createHashRouter([
@@ -22,6 +23,13 @@ export const router = createHashRouter([
         path: "about",
         element: <AboutPage />,
       },
+
+      {
+        path: 'movies/:movieId',
+        element: <MoviePage />
+      },
+
+
       {
         path: "account",
         element:

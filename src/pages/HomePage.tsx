@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
+import { moviesService } from '../services/MoviesService';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
+import { observer } from 'mobx-react';
+import MovieCard from '../components/MovieCard';
+function HomePage() {
 
-export default function HomePage() {
-
-
-  function onMouseMoving(){
-    console.log('🖱️🐁🪤')
+  async function getMovies() {
+    try {
+      await moviesService.discoverMovies()
+    }
+    catch (error) {
+      Pop.error(error as Error);
+    }
   }
 
-
-  function onUnmount() {
-    console.log('the home page is gone')
-    document.removeEventListener('mousemove', onMouseMoving)
+  function onMounted() {
+    getMovies()
   }
-
-  function onMounted(){
-    console.log('the home page is ready')
-    
-    document.addEventListener('mousemove', onMouseMoving)
-
-
-    return onUnmount
-  }
-
 
   // this is an onmounted
   useEffect(onMounted, [])
@@ -30,6 +26,12 @@ export default function HomePage() {
   return (
     <div className="home-page">
 
+      {AppState.movies.map(m => <MovieCard movie={m} key={m.id} />)}
+
+
     </div>
   )
 }
+
+export default observer(HomePage)
+
