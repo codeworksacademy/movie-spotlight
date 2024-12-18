@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { moviesService } from '../services/MoviesService';
 import { AppState } from '../AppState';
-import '@assets/scss/pages/MoviePage.scss'
+import '../assets/scss/pages/MoviePage.scss'
 import Pop from '../utils/Pop';
 
 function MoviePage() {
@@ -37,8 +37,6 @@ function MoviePage() {
   }
 
   const movie = AppState.movie
-
-
 
   return (
 

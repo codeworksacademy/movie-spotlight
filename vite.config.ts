@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 
@@ -8,12 +7,12 @@ export default defineConfig({
   build: {
     sourcemap: false
   },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url))
-    }
-  },
+  // resolve: {
+  //   alias: {
+  //     '@': fileURLToPath(new URL('./src', import.meta.url)),
+  //     '@assets': fileURLToPath(new URL('./src/assets', import.meta.url))
+  //   }
+  // },
   server: {
     port: 8080
   },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { moviesService } from '../services/MoviesService';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
@@ -28,7 +28,7 @@ export default function HomePage() {
   const MovieList = observer(() => AppState.movies.map(m =>
     <div className='col-md-4 my-3' key={m.id}>
 
-      <MovieCard movie={m}  />
+      <MovieCard movie={m} />
     </div>
   )
   )
